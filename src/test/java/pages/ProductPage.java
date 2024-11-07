@@ -4,8 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.DriverManager;
 
+import java.time.Duration;
 import java.util.List;
 
 public class ProductPage {
@@ -49,7 +52,7 @@ public class ProductPage {
             js.executeScript("arguments[0].scrollIntoView(true);", continueShopping);
             js.executeScript("arguments[0].click();", continueShopping);
 
-            WaitFactory.waitToSync(2);
+            //WaitFactory.waitToSync(2);
         }
         WebElement cartElement = WaitFactory.waitTillVisible(cartBtn);
         cartElement.click();
