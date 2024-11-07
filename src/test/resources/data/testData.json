@@ -1,0 +1,9 @@
+{
+  "login": {
+    "username": "Admin",
+    "password": "admin123"
+  },
+  "search": {
+    "query": ""
+  }
+}
