@@ -38,21 +38,15 @@ public class ProductPage {
 
     public void addProductsToCart() {
         List<WebElement> products = WaitFactory.waitTillItemsVisible(productInfo);
-        for (int i = 1; i <= products.size(); i++) {
+        int i = 1;
+        for (WebElement product : products) {
+            actions.moveToElement(product).build().perform();
             String addToCartXPath = "(//*[@class='overlay-content']/a)[" + i + "]";
-            WebElement addToCartButton = DriverManager.getWebDriver().findElement(By.xpath(addToCartXPath));
-            actions.moveToElement(addToCartButton).build().perform();
-            js.executeScript("arguments[0].click();", addToCartButton);
-
-            WebElement continueShopping = DriverManager.getWebDriver().findElement(continueShoppingBtn);
-            Boolean cs = WaitFactory.waitTillTextPresent(continueShopping, "Continue Shopping");
-            js.executeScript("arguments[0].scrollIntoView(true);", continueShopping);
-            js.executeScript("arguments[0].click();", continueShopping);
-
-            WaitFactory.waitToSync(2);
+            WaitFactory.waitTillClickable(By.xpath(addToCartXPath)).click();
+            WaitFactory.waitTillClickable(continueShoppingBtn).click();
+            i++;
         }
-        WebElement cartElement = WaitFactory.waitTillVisible(cartBtn);
-        cartElement.click();
+        WaitFactory.waitTillClickable(cartBtn).click();
     }
 
 }
