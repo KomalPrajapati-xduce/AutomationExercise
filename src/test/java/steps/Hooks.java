@@ -1,6 +1,7 @@
 package steps;
 
 import base.BaseTest;
+import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import utils.DataReader;
 
@@ -13,8 +14,8 @@ public class Hooks {
         baseTest.setUp();
     }
 
-//    @After
-//    public void tearDown() {
-//        baseTest.tearDown();
-//    }
+    @After
+    public void tearDown() {
+        baseTest.tearDown();
+    }
 }

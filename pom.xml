@@ -55,7 +55,26 @@
             <version>5.3.0</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/aws.smithy.kotlin/http-client -->
+        <dependency>
+            <groupId>aws.smithy.kotlin</groupId>
+            <artifactId>http-client</artifactId>
+            <version>1.3.18</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.talend.sdk.component/component-runtime-http-junit -->
+        <dependency>
+            <groupId>org.talend.sdk.component</groupId>
+            <artifactId>component-runtime-http-junit</artifactId>
+            <version>10.57.0</version>
+            <scope>provided</scope>
+        </dependency>
+
     </dependencies>
+
+
+
     <properties>
         <maven.compiler.source>22</maven.compiler.source>
         <maven.compiler.target>22</maven.compiler.target>

@@ -8,3 +8,8 @@ Feature: To use Automation-Exercise web application
     Examples:
       | productname |  |
       | Jeans       |  |
+
+
+  @Regression
+  Scenario: To find broken links
+    Then check the broken links on the page
