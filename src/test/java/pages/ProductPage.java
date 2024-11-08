@@ -20,7 +20,7 @@ public class ProductPage {
     }
 
     private final By txtCategory = By.cssSelector("[href='#Men']");
-    private final String txtProduct = "//*[@id='Men']//li[normalize-space()='text']/a";
+    private final String txtProduct = "//li[normalize-space()='text']/a";
     private final By productInfo = By.cssSelector("[class*='productinfo']");
     //private final By addToCartBtn = By.cssSelector(".overlay-content [class*='add-to-cart']");
     private final By continueShoppingBtn = By.cssSelector("[class*=btn-success]");

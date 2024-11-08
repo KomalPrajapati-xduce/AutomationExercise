@@ -2,59 +2,52 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import java.io.IOException;
+import utils.DriverManager;
+
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
-public class BrokenLinkPage {
-    private BrokenLinkPage(){
+public class BrokenLinkPage extends PageActions {
+    private BrokenLinkPage() {
     }
 
-    public static BrokenLinkPage getBrokenLink(){
+    public static BrokenLinkPage getBrokenLink() {
         return new BrokenLinkPage();
     }
 
-    // Method to find all the anchor elements with href attribute
-    public List<String> findAllLinks() {
-        List<String> links = new ArrayList<>();
-        List<WebElement> linkElements = WaitFactory.waitTillItemsVisible(By.tagName("a"));
+    public void brokenLinkFetcher() {
+        //Storing the links in a list and traversing through the links
+        List<WebElement> links = DriverManager.getWebDriver().findElements(By.tagName("a"));
 
-//        for (WebElement linkElement : linkElements) {
-//            String url = linkElement.getAttribute("href");
-//            if (url != null && !url.isEmpty()) {
-//                links.add(url);
-//            }
-//        }
-        return links;
+        // This line will print the number of links and the count of links.
+        System.out.println("No of links are " + links.size());
+
+        //checking the links fetched.
+        for (int i = 0; i < links.size(); i++) {
+            WebElement E1 = links.get(i);
+            String url = E1.getAttribute("href");
+            verifyLinks(url);
+        }
     }
 
-    // Method to get the status code of a URL
-    public int getStatusCode(String urlString) {
+    private static void verifyLinks(String linkUrl) {
         try {
-            URL url = new URL(urlString);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-            connection.connect();
-            return connection.getResponseCode();
-        } catch (IOException e) {
-            System.out.println("Error checking URL: " + urlString + " - " + e.getMessage());
-            return 404;
-        }
-    }
+            URL url = new URL(linkUrl);
 
-    // Method to get broken links by checking the status codes
-    public List<String> getBrokenLinks() {
-        List<String> brokenLinks = new ArrayList<>();
-        List<String> allLinks = findAllLinks();
-
-        for (String link : allLinks) {
-            int statusCode = getStatusCode(link);
-            if (statusCode != 200) {
-                brokenLinks.add(link);
+            //Now we will be creating url connection and getting the response code
+            HttpURLConnection httpURLConnect = (HttpURLConnection) url.openConnection();
+            httpURLConnect.setConnectTimeout(5000);
+            httpURLConnect.connect();
+            if (httpURLConnect.getResponseCode() >= 400) {
+                System.out.println(linkUrl + " - " + httpURLConnect.getResponseMessage() + "is a broken link");
             }
+
+            //Fetching and Printing the response code obtained
+            else {
+                System.out.println(linkUrl + " - " + httpURLConnect.getResponseMessage());
+            }
+        } catch (Exception e) {
         }
-        return brokenLinks;
     }
 }

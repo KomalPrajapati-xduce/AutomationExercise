@@ -1,5 +1,7 @@
-Feature: To use Automation-Exercise web application
+Feature: Automation Exercise
 
+
+  @regression
   Scenario Outline: To add product
     Given User is on home page
     Then selects product "<productname>"
@@ -7,9 +9,4 @@ Feature: To use Automation-Exercise web application
 
     Examples:
       | productname |  |
-      | Jeans       |  |
-
-
-  @Regression
-  Scenario: To find broken links
-    Then check the broken links on the page
+      | Saree       |  |

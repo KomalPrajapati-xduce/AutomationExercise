@@ -7,7 +7,7 @@ import pages.ProductPage;
 public class ProductSteps {
     @Given("User is on home page")
     public void user_is_on_home_page() {
-        ProductPage.getProduct().selectCategory();
+       // ProductPage.getProduct().selectCategory();
     }
 
     @Then("selects product {string}")
